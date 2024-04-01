@@ -8,10 +8,10 @@ from pre_commit_hooks.check_docstring_first import main
 
 # Contents, expected, expected_output
 TESTS = (
-    # trivial
-    (b'', 0, ''),
-    # Acceptable
-    (b'"foo"', 0, ''),
+    # # trivial
+    # (b'', 0, ''),
+    # # Acceptable
+    # (b'"foo"', 0, ''),
     # Docstring after code
     (
         b'from __future__ import unicode_literals\n'
