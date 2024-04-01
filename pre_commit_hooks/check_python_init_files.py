@@ -12,7 +12,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     # reg = re.compile(args.pattern)
     retval = 0
     for filename in args.filenames:
-        print('checking {filename} -----------------------------------------')
+        print('--------------------------------------------------------------')
+        print(f'checking "{filename}" ---------------------------------------')
         # 判断上级目录是否是 tests
         current_path = filename
         is_parent_directories_tests = False
@@ -35,7 +36,8 @@ def main(argv: Sequence[str] | None = None) -> int:
             with open(filename) as fp:
                 if not fp.readline().startswith('__cn__'):
                     retval = 1
-                    print(f'{filename} not add __cn__ comment')
+                    print(f'"{filename}" not add __cn__ comment')
+        print('--------------------------------------------------------------')
     return retval
 
 
