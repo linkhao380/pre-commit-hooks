@@ -40,7 +40,6 @@ def main(argv: Sequence[str] | None = None) -> int:
                         print(f'"{filename}" not add __cn__ comment')
             except Exception as e:
                 print(f'"{filename}" raise exception {e}')
-        print('--------------------------------------------------------------')
     return retval
 
 
