@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from pre_commit_hooks.check_init import main
+from pre_commit_hooks.check_python_init_files import main
 
 
 def test_init_good(tmpdir):

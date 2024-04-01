@@ -12,6 +12,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     # reg = re.compile(args.pattern)
     retval = 0
     for filename in args.filenames:
+        print('checking {filename} -----------------------------------------')
         # 判断上级目录是否是 tests
         current_path = filename
         is_parent_directories_tests = False
@@ -26,6 +27,8 @@ def main(argv: Sequence[str] | None = None) -> int:
                 break
             else:
                 continue
+        if is_parent_directories_tests is False:
+            print('not start with tests, pass')
         # 判断是否是 __init__.py 文件 且上级目录有 tests
         base = os.path.basename(filename)
         if base == '__init__.py' and is_parent_directories_tests:

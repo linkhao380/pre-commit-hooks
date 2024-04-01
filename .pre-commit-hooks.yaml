@@ -199,10 +199,10 @@
     language: python
     types: [text]
     stages: [commit, push, manual]
--   id: check-init
-    name: check init file
-    description: check init file
-    entry: check-init
+-   id: check-python-init-files
+    name: check python init files
+    description: check python init files
+    entry: check-python-init-files
     language: python
     types: [python]
     stages: [commit, push, manual]
