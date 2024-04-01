@@ -32,7 +32,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             with open(filename) as fp:
                 if not fp.readline().startswith('__cn__'):
                     retval = 1
-                    print(f'{filename} 没有添加 __cn__ 注释')
+                    print(f'{filename} not add __cn__ comment')
     return retval
 
 
