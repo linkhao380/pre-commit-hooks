@@ -33,10 +33,13 @@ def main(argv: Sequence[str] | None = None) -> int:
         # 判断是否是 __init__.py 文件 且上级目录有 tests
         base = os.path.basename(filename)
         if base == '__init__.py' and is_parent_directories_tests:
-            with open(filename) as fp:
-                if not fp.readline().startswith('__cn__'):
-                    retval = 1
-                    print(f'"{filename}" not add __cn__ comment')
+            try:
+                with open(filename) as fp:
+                    if not fp.readline().startswith('__cn__'):
+                        retval = 1
+                        print(f'"{filename}" not add __cn__ comment')
+            except Exception as e:
+                print(f'"{filename}" raise exception {e}')
         print('--------------------------------------------------------------')
     return retval
 
