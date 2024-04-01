@@ -34,7 +34,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         base = os.path.basename(filename)
         if base == '__init__.py' and is_parent_directories_tests:
             try:
-                with open(filename) as fp:
+                with open(filename, encoding='utf-8') as fp:
                     if not fp.readline().startswith('__cn__'):
                         retval = 1
                         print(f'"{filename}" not add __cn__ comment')
