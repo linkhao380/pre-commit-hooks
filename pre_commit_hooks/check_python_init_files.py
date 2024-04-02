@@ -19,6 +19,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     retval = 0
     for filename in args.filenames:
+
         # 检查文件的目录路径
         filename_dir_path = os.path.dirname(filename)
         # 需要上级目录的路径
@@ -26,6 +27,8 @@ def main(argv: Sequence[str] | None = None) -> int:
             os.path.join(filename_dir_path, os.pardir, args.parent_dir),
         )
         # 判断上级目录是否是 tests
+        print('filename_dir_path:', filename_dir_path)
+        print('parent_dir_path:', parent_dir_path)
         if os.path.commonpath(
                 [filename_dir_path, parent_dir_path],
         ).__contains__(args.parent_dir):
