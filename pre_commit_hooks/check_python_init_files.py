@@ -19,22 +19,17 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     retval = 0
     for filename in args.filenames:
-
-        # 检查文件的目录路径
-        filename_dir_path = os.path.dirname(filename)
-        # 需要上级目录的路径
-        parent_dir_path = os.path.abspath(
-            os.path.join(filename_dir_path, os.pardir, args.parent_dir),
-        )
         # 判断上级目录是否是 tests
-        print('filename_dir_path:', filename_dir_path)
-        print('parent_dir_path:', parent_dir_path)
-        if os.path.commonpath(
-                [filename_dir_path, parent_dir_path],
-        ).__contains__(args.parent_dir):
-            is_parent_directories_tests = True
-        else:
-            is_parent_directories_tests = False
+        is_parent_directories_tests = False
+        current_path = filename
+        while True:
+            path, folder = os.path.split(current_path)
+            if folder == args.parent_dir:
+                is_parent_directories_tests = True
+                break
+            if folder == '':
+                break
+            current_path = path
         # 判断是否是 __init__.py 文件 且上级目录有 tests
         base = os.path.basename(filename)
         if base == '__init__.py' and is_parent_directories_tests:
