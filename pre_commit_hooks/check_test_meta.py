@@ -11,8 +11,9 @@ def check_has_author_decorator_by_ast(node: Any) -> bool:
     """判断 httprunner 类是否有 @pytest.mark.meta(author = ‘’) 装饰器"""
     has_author_decorator = False
     for decorator in node.decorator_list:
-        keywords = [key.arg for key in decorator.keywords]
         try:
+            # 装饰器中的传参 keyword
+            keywords = [key.arg for key in decorator.keywords]
             if decorator.func.attr == 'meta':
                 ast_name = decorator.func.value
                 if ast_name.attr == 'mark':
@@ -20,6 +21,7 @@ def check_has_author_decorator_by_ast(node: Any) -> bool:
                         if 'author' in keywords:
                             has_author_decorator = True
         except AttributeError:
+            # 报错代表没有 @pytest.mark.meta 装饰器
             continue
     return has_author_decorator
 
@@ -50,7 +52,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                     if not check_has_author_decorator_by_ast(node):
                         print(
                             f'{filename}:: {node.name} '
-                            '没有 @pytest.mark.meta 装饰器',
+                            'not found @pytest.mark.meta decorator',
                         )
                         retval = 1
 
