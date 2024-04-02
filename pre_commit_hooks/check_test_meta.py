@@ -51,8 +51,9 @@ def main(argv: Sequence[str] | None = None) -> int:
                 if node.name in test_funcs or node.name in test_classes:
                     if not check_has_author_decorator_by_ast(node):
                         print(
-                            f'{filename}:: {node.name} '
-                            'not found @pytest.mark.meta decorator',
+                            f'"{filename}:{node.lineno}"::{node.name} '
+                            'class not found "@pytest.mark.meta" '
+                            'decorator with "author" key',
                         )
                         retval = 1
 
