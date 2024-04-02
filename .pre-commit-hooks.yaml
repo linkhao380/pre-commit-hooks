@@ -206,3 +206,10 @@
     language: python
     types: [python]
     stages: [commit, push, manual]
+-   id: check-test-meta
+    name: check test meta
+    description: check test meta
+    entry: check-test-meta
+    language: python
+    types: [python]
+    stages: [commit, push, manual]

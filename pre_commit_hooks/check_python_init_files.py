@@ -9,7 +9,6 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument('filenames', nargs='*', help='Filenames to check.')
     args = parser.parse_args(argv)
-    # reg = re.compile(args.pattern)
     retval = 0
     for filename in args.filenames:
         print('--------------------------------------------------------------')
@@ -33,13 +32,10 @@ def main(argv: Sequence[str] | None = None) -> int:
         # 判断是否是 __init__.py 文件 且上级目录有 tests
         base = os.path.basename(filename)
         if base == '__init__.py' and is_parent_directories_tests:
-            try:
-                with open(filename, encoding='utf-8') as fp:
-                    if not fp.readline().startswith('__cn__'):
-                        retval = 1
-                        print(f'"{filename}" not add __cn__ comment')
-            except Exception as e:
-                print(f'"{filename}" raise exception {e}')
+            with open(filename, encoding='utf-8') as fp:
+                if not fp.readline().startswith('__cn__'):
+                    retval = 1
+                    print(f'"{filename}" not add __cn__ comment')
     return retval
 
 
