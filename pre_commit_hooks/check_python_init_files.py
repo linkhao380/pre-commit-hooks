@@ -37,8 +37,8 @@ def main(argv: Sequence[str] | None = None) -> int:
                 if not fp.readline().startswith('__cn__'):
                     retval = 1
                     print(
-                        f'"{filename}:1" '
-                        f'the first row not found "__cn__" const definition',
+                        f'File "{filename}", line 1: '
+                        f'not found "__cn__" const definition',
                     )
     return retval
 
